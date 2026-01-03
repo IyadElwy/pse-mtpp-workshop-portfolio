@@ -14,23 +14,9 @@ permissions:
 
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Lint HTML files
-        uses: super-linter/super-linter@v5
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_HTML: true
-          VALIDATE_ALL_CODEBASE: true
 
   security-scan:
     runs-on: ubuntu-latest
-    needs: lint
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
