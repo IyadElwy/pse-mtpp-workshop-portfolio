@@ -14,7 +14,20 @@ permissions:
 
 
 jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+  
+
   deploy:
+    needs: security-scan
     runs-on: ubuntu-latest
     environment:
       name: github-pages
